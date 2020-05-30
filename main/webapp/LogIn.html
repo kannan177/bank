@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+     <title>User Login Page</title>
+     <script>
+            function numbersonly(input){
+          var regex =/[^0-9]/gi;
+          input.value=input.value.replace(regex,"");
+      } 
+            
+            function validation()
+            {  
+            	var baseurl='http://localhost:8083/demorest';
+            	
+            	var t1= document.getElementById("t1").value;
+            	
+            	var t2= document.getElementById("t2").value;            	
+            	
+            	var xmlhttp = new XMLHttpRequest();            	
+            	
+            	xmlhttp.onreadystatechange=function()
+            	{
+            		
+            		if(xmlhttp.readyState == 4 && xmlhttp.status==200)
+            			
+            		{	
+            			
+            			var response=this.responseText;	
+            			
+            			if(response=="true")
+            			{
+            				window.location.href="Welcom.jsp";
+            			}
+            			else
+            				alert("Please enter the correct value");
+            		}            		
+            		
+            	};
+            	
+            	xmlhttp.open("POST",baseurl+"/webapi/validation/checking",true);
+            	
+            	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            	
+            	xmlhttp.send("t1="+t1+"&t2="+t2);
+            }
+      </script>		
+            <body>
+            <form method="post">
+                Enter the LogIn ID <input type ="text" id ="t1" 
+                
+                               onkeyup="numbersonly(this)" required>
+                               
+            <br>Enter the Password   <input type ="password" id ="t2"  required>	
+            		
+            <br>
+            
+            <input type ="submit" value="Log In" onclick="validation()">
+            
+            </form>
+            </body>
+            
+</html>

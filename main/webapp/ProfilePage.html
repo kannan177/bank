@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+var baseurl='http://localhost:8083/demorest';
+
+function loadPersons()
+
+{
+	
+	var xmlhttp = new XMLHttpRequest();
+	
+	xmlhttp.onreadystatechange=function()
+	{
+		if(xmlhttp.readyState == 4 && xmlhttp.status==200)
+			
+		{
+			
+			var persons = JSON.parse(xmlhttp.responseText);
+						
+			var tbl ="<h1>Account Number </h1><br><div>"+persons.accountNumber+"</div><br><br><h4>Balance is "+persons.balance+"</h4>"			
+			document.getElementById("personinfo").innerHTML=tbl;
+			
+		}
+		
+	};
+	xmlhttp.open("GET",baseurl+"/webapi/profile/myprofile",true);
+	
+	xmlhttp.send();
+	
+}
+	
+	window.onload=function()
+	{
+		loadPersons();
+	}
+</script>
+</head>
+<body>
+		<div id ="personinfo">List</div>
+	<p>
+	<br><br><a href= Welcom.jsp><button>back</button></a>
+	</body>
+	</html>

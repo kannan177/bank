@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+var baseurl='http://localhost:8083/demorest';
+
+function loadPersons()
+{
+	
+	var xmlhttp = new XMLHttpRequest();
+	
+	xmlhttp.onreadystatechange=function()
+	{
+		if(xmlhttp.readyState == 4 && xmlhttp.status==200)
+		{
+			
+			document.getElementById("personinfo").innerHTML=this.responseText;
+			
+		}
+		
+	};
+	
+	xmlhttp.open("GET",baseurl+"/webapi/information/balance",true);
+	
+	xmlhttp.send();
+	
+}
+	
+	window.onload=function()
+	{
+		loadPersons();
+	}
+</script>
+</head>
+<body>
+	<p>your main balance is 
+		<div id ="personinfo">Balance</div>
+	<p>
+	<br><br><a href= Welcom.jsp><button>back</button></a>
+	</body>
+	</html>

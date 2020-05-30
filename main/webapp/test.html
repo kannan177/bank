@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+var baseurl='http://localhost:8083/demorest';
+function numbersonly(input){
+    var regex =/[^0-9]/gi;
+    input.value=input.value.replace(regex,"");
+} 
+function loadPersons()
+{   var formData = new FormData();
+	var t1= document.getElementById("t1").value;
+	var t2= document.getElementById("t2").value;
+	formData.append("t1", t1);
+	formData.append("t2", t2);
+	var xmlhttp = new XMLHttpRequest();
+	
+	xmlhttp.onreadystatechange=function()
+	{
+		if(xmlhttp.readyState == 4 && xmlhttp.status==200)
+		{	
+			var response=this.responseText;	
+			document.getElementById("personinfo").innerHTML=response;
+			if(response=="true")
+				{
+				window.location.href="Welcom.jsp";
+				}
+			
+		}
+		
+	};
+	
+	xmlhttp.open("POST",baseurl+"/webapi/testing/ongoing",true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send("t1="+t1+"&t2="+t2);
+}
+</script>
+</head>
+<body>
+            <form  method="post">
+                Enter the LogIn ID @<input type ="text" name ="t1" id="t1"
+                               onkeyup="numbersonly(this)" required>
+            <br>Enter the Password   <input type ="password" name ="t2" id="t2" required>
+			
+            <br>
+            
+            <input type ="submit" value="Log In" onclick="loadPersons()">
+            </form>
+</body>
+<body>
+	<p>your main balance is 
+		<div id ="personinfo">luck</div>
+	<p>
+	<br><br><a href= Welcom.jsp><button>back</button></a>
+	</body>
+	</html>
