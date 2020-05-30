@@ -28,5 +28,5 @@
                                        <input type ="submit" value="send"><br><br>
         </form>
     </body>
-     <a href= Welcom.jsp>back</a>
+     <a href= EmployeeWelcome.jsp>back</a>
 </html>

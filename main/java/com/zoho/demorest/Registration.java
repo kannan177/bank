@@ -44,7 +44,7 @@ public String register(@FormParam("Acc_No") Long Acc_No,
 					 	dbManager.updateUserDetails(pr);
              
 					 	return "Online Access Granded";
-					 	 //return Response.temporaryRedirect(uri).build();
+					 	
 			        }
 				 
 				 	else 

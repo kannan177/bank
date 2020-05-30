@@ -12,6 +12,7 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("Employee_Money_Transfer")
 public class Employee_Money_Transfer {
+	 DBmanager dbManager = DBmanager.getInstance();
 
 	@Path("transfer")
 	@POST
@@ -23,7 +24,7 @@ public class Employee_Money_Transfer {
 			 @FormParam("sender") String Sender_name,
 			 @FormParam("t3") long amount)
 	{
-		 DBmanager dbManager = DBmanager.getInstance();
+		
 		 
 		 if((dbManager.checkAvailable(senderNo))&&(dbManager.checkAvailable(receiverNo)))
          {                  
@@ -54,4 +55,33 @@ public class Employee_Money_Transfer {
              }
 		
 	}
+	
+	
+	 	@Path("withdraw")
+	    @POST
+	    @Produces(MediaType.TEXT_PLAIN)
+	    public String AmountWithDraw(@FormParam("Acc_No") Long Acc_No,
+	    		@FormParam ("Amount") Long Amount )
+	    {
+	    	
+		 if( ( dbManager.checkAvailable(Acc_No) ) )
+         {                  
+                                   
+                if( dbManager . Withdraw ( Acc_No , Amount ) )
+                         {
+                                                        
+                 return "Amount Dectected Successfully";
+                 
+                         }
+                
+                else
+                	
+                    return "Please maintain the minimum balance Transactionclosed";
+                
+         }
+             else
+             {
+            	 return "Please enter the correct value";
+             }
+	    }
 }

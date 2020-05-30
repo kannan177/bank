@@ -52,7 +52,7 @@ function CloseConnection()
         
             <td>
                 
-                <a href="Amou ntWithdraw.jsp">
+                <a href="AmountWithdraw.jsp">
                     
                 <button>WithDraw money for user</button></a>
                 
